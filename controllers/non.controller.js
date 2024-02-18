@@ -9,16 +9,21 @@ async function checkTime(req, res){
         });
     }
 
-    const fetchAlertCheck = await axios.post("https://klongyaa-api.it-project.site/api/alert/check", {
-        boxId: boxId,
-        currentTime: currentTime
-    }, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-    });
+    try {
+        const fetchAlertCheck = await axios.post("https://klongyaa-api.it-project.site/api/alert/check", {
+            boxId: boxId,
+            currentTime: currentTime
+        }, {
+            headers: {
+            'Content-Type': 'application/json'
+            }
+        });
 
-    return res.json(fetchAlertCheck.data);
+        return res.json(fetchAlertCheck.data);
+    }
+    catch(e){
+        console.log(e);
+    }
 }
 
 async function deleteTime(req, res){
@@ -31,17 +36,22 @@ async function deleteTime(req, res){
         });
     }
 
-    const fetchDeleteAlert = await axios.post("https://klongyaa-api.it-project.site/api/alert/removeforbox", {
-        boxId: boxId,
-        alertId: alertId,
-        secretApiKey: secretApiKey
-    }, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-    });
+    try{
+        const fetchDeleteAlert = await axios.post("https://klongyaa-api.it-project.site/api/alert/removeforbox", {
+            boxId: boxId,
+            alertId: alertId,
+            secretApiKey: secretApiKey
+        }, {
+            headers: {
+            'Content-Type': 'application/json'
+            }
+        });
 
-    return res.json(fetchDeleteAlert.data);
+        return res.json(fetchDeleteAlert.data);
+    }
+    catch(e){
+        console.log(e);
+    }
 }
 
 module.exports = {
