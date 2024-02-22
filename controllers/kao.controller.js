@@ -47,9 +47,29 @@ async function studentTimestamp(req, res){
     }
 }
 
+async function stopAlert(req, res){
+    const { secretKey } = req.body ?? {};
+
+    try {
+        const response = await axios.post("http://127.0.0.1:3030/api/stopalert", {
+            secretKey: secretKey,
+        }, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+
+        return res.json(response.data);
+    }
+    catch(e){
+        console.log(e);
+    }
+}
+
 
 module.exports = {
     testpost,
     checkTime,
-    studentTimestamp
+    studentTimestamp,
+    stopAlert
 }

@@ -14,5 +14,6 @@ router.post("/non/removetime", deleteTime);
 router.post("/kao/testpost", urlEncoded, kaoController.testpost);
 router.post("/kao/checktime", kaoController.checkTime);
 router.post("/kao/timestamp", kaoController.studentTimestamp);
+router.post("/kao/stopalert", kaoController.stopAlert);
 
 module.exports = router;
