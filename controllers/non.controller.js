@@ -54,7 +54,34 @@ async function deleteTime(req, res){
     }
 }
 
+async function updateStatus(req, res){
+    const { boxId } = req.body ?? {};
+
+    if(!boxId){
+        return res.json({
+            status: "FAIL",
+            message: "Please complete your information"
+        });
+    }
+
+    try{
+        const fetchUpdateStatus = await axios.post("https://klongyaa-api.it-project.site/api/client/status/update", {
+            boxId: boxId,
+        }, {
+            headers: {
+            'Content-Type': 'application/json'
+            }
+        });
+
+        return res.json(fetchUpdateStatus.data);
+    }
+    catch(e){
+        console.log(e);
+    }
+}
+
 module.exports = {
     checkTime,
     deleteTime,
+    updateStatus
 }

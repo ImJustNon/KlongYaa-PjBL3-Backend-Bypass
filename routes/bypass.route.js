@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { checkTime, deleteTime } = require("../controllers/non.controller");
+const { checkTime, deleteTime, updateStatus } = require("../controllers/non.controller");
 const kaoController = require("../controllers/kao.controller");
 const bodyparser = require("body-parser");
 const urlEncoded = bodyparser.urlencoded({
@@ -10,6 +10,7 @@ const urlEncoded = bodyparser.urlencoded({
 
 router.post("/non/checktime", checkTime);
 router.post("/non/removetime", deleteTime);
+router.post("/non/updatestatus", updateStatus);
 
 router.post("/kao/testpost", urlEncoded, kaoController.testpost);
 router.post("/kao/checktime", kaoController.checkTime);
